@@ -2,26 +2,22 @@ import { fetchBreeds, fetchCatByBreed } from './cat-api';
 import Notiflix from 'notiflix';
 import SlimSelect from 'slim-select';
 
+
 const loaded = document.querySelector('.mask');
-window.addEventListener('load', closeLoader);
-
-function closeLoader() {
-  loaded.classList.add('load-remove');
-  setTimeout(() => {
-    loaded.remove();
-  }, 600);
-}
-
 const select = document.querySelector('#selectElement');
 const infoCat = document.querySelector('.cat-info');
 select.addEventListener('change', selectBreed);
 
 function selectBreed() {
+    loaded.classList.remove('load-remove');
   fetchCatByBreed(select.value)
     .then(breed => {
+    setTimeout(() => {
+    loaded.classList.add('load-remove');
+}, 600);
       infoCat.innerHTML = `<img class="img-block" src=${
         breed.url
-      } alt="" widht="200px" height="300px">${createDescriptionBreeds(
+      } alt="" widht="300px" height="300px">${createDescriptionBreeds(
         breed.breeds
       )}`;
     })
@@ -34,6 +30,9 @@ function selectBreed() {
 
 fetchBreeds()
   .then(cat => {
+    setTimeout(() => {
+    loaded.classList.add('load-remove');
+}, 600);
     select.insertAdjacentHTML('beforeend', createBreeds(cat));
     new SlimSelect({
       select: select,
