@@ -1,6 +1,6 @@
-import { fetchBreeds, fetchCatByBreed } from './cat-api';
-import { createBreeds, createDescriptionBreeds } from './render-cat'
-import { variable } from './const-helper';
+import { fetchBreeds, fetchCatByBreed } from './helpers-js/cat-api';
+import { createBreeds, createDescriptionBreeds } from './helpers-js/render-cat'
+import { variable } from './helpers-js/const-helper';
 import Notiflix from 'notiflix';
 import SlimSelect from 'slim-select';
 
