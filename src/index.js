@@ -4,14 +4,15 @@ import { variable } from './helpers-js/const-helper';
 import Notiflix from 'notiflix';
 import SlimSelect from 'slim-select';
 
-variable.select.addEventListener('change', selectBreed);
+const { select, loaded, infoCat } = variable;
+select.addEventListener('change', selectBreed);
 
 function selectBreed() {
- variable.loaded.classList.remove('load-remove');
-  fetchCatByBreed(variable.select.value)
+loaded.classList.remove('load-remove');
+  fetchCatByBreed(select.value)
     .then(breed => {
 removeSpinner()
-   variable.infoCat.innerHTML = `${createDescriptionBreeds(breed, breed.breeds)}`;
+infoCat.innerHTML = `${createDescriptionBreeds(breed, breed.breeds)}`;
     })
     .catch(() => {
 renderErr()
@@ -24,9 +25,9 @@ removeSpinner()
 fetchBreeds()
   .then(cat => {
 removeSpinner()
-    variable.select.insertAdjacentHTML('beforeend', createBreeds(cat));
+    select.insertAdjacentHTML('beforeend', createBreeds(cat));
 new SlimSelect({
-  select: variable.select,
+  select: select,
 });
   })
   .catch(() => {
@@ -38,7 +39,7 @@ removeSpinner()
 
 function removeSpinner() {
         setTimeout(() => {
-        variable.loaded.classList.add('load-remove');
+        loaded.classList.add('load-remove');
       }, 600);
 }
 
