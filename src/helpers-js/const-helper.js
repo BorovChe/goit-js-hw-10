@@ -4,4 +4,6 @@ const variable = {
   infoCat: document.querySelector('.cat-info'),
 };
 
-export { variable }
+const { select, loaded, infoCat } = variable;
+
+export { select, loaded, infoCat };
